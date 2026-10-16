@@ -1,0 +1,9 @@
+fastmcp==2.6.1
+mcp==1.30.0
+langchain
+langchain-openai
+langchain-mcp-adapters==0.3.2
+tavily-python
+python-dotenv
+requests
+beautifulsoup4
