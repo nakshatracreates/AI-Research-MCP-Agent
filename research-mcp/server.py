@@ -79,7 +79,7 @@ def read_page(url: str):
 @mcp.tool()
 def save_search(title: str, content: str):
     """Save research content as a Markdown file."""
-    # Restrict the title to a safe filename.
+
     safe_title = "".join(
         char for char in title
         if char.isalnum() or char in ("_", "-")
@@ -88,11 +88,15 @@ def save_search(title: str, content: str):
     if not safe_title:
         raise ValueError("Title must contain letters or numbers.")
 
-    research_dir = Path("research")
-    research_dir.mkdir(parents=True, exist_ok=True)
+    research_dir = "research"
+    os.makedirs(research_dir, exist_ok=True)
 
-    file_path = research_dir / f"{safe_title}.md"
-    file_path.write_text(content, encoding="utf-8")
+    file_path = os.path.join(
+        research_dir, f"{safe_title}.md"
+    )
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(content)
 
     return f"Research saved to {file_path}"
 
